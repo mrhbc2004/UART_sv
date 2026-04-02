@@ -71,7 +71,7 @@ module uart_rx(
           sbuf_next	= {rxd, sbuf_reg[7:1]};
           
           if(count_reg == 3'd7)
-            ns = STOP:
+            ns = STOP;
           else
             count_next = count_reg + 1;
         end

@@ -5,14 +5,16 @@ module baudrate_gen #( // Parameterized for clk and baud_rate
 	parameter int unsigned CLK_FREQ 		= 1_000_000, // 1MHz
   	parameter int unsigned BAUD_RATE 		= 9600
 )(
-  input  logic                                      clk,  // clock input
+  input  logic										clk,  // clock input
   input  logic										rstn, // active low reset
-  output logic [$clog2(CLK_FREQ/BAUD_RATE)-1:0] 	q, 	  // dynamic size of bitwidth taken by BAUD_DIV
   output logic										tick  // intended baud rate pulse (not used)
 );
   
   // compile time constant
-  localparam int unsigned BAUD_DIV = `CLK / `BAUD_RATE;
+  localparam int unsigned BAUD_DIV = CLK_FREQ / BAUD_RATE;
+  
+  // internal signal for baud
+  logic [$clog2(CLK_FREQ/BAUD_RATE)-1:0] 	q;	  // dynamic size of bitwidth taken by BAUD_DIV
   
   // core logic
   always_ff @(posedge clk or negedge rstn) begin

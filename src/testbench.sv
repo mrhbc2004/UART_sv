@@ -97,7 +97,7 @@ module uart_tb;
   
   // Monitor signals 
   initial begin
-    $monitor("TIME: %ot | txd = %b | tx_done = %b| rx_done = %b | data_out = %h",$time,txd,tx_done,rx_done,data_out);
+    $monitor("TIME: %0t | txd = %b | tx_done = %b| rx_done = %b | data_out = %h",$time,txd,tx_done,rx_done,data_out);
   end
   
   // Initial block to dumpvars
